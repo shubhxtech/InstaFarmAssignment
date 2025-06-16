@@ -31,8 +31,6 @@ model User {
   email       String
   phone       String
   dateOfBirth DateTime
-  imageUrl    String?  // New field to store profile image URL
-
   ownerId     Int
   owner       Owner    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, X, Users, Heart } from 'lucide-react';
-
+import { userService } from '../services/userService';
 export default function UserForm({ user, onSubmit, onCancel, title, users, loading }) {
   const [formData, setFormData] = useState({
     name: user?.name || '',
@@ -11,17 +11,6 @@ export default function UserForm({ user, onSubmit, onCancel, title, users, loadi
   const [followingUsers, setFollowingUsers] = useState([]);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Mock userService since it's not available in this environment
-  const userService = {
-    followUser: async (userId, followerId) => {
-      await new Promise(resolve => setTimeout(resolve, 800));
-      console.log('Following user:', userId, 'by:', followerId);
-    },
-    unfollowUser: async (userId, followerId) => {
-      await new Promise(resolve => setTimeout(resolve, 800));
-      console.log('Unfollowing user:', userId, 'by:', followerId);
-    }
-  };
 
   useEffect(() => {
     if (user && user.following) {
